@@ -6,7 +6,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.And;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
-import utils.HttpClientUtil;
 
 import java.util.Map;
 
@@ -16,7 +15,7 @@ public class AuthStepDefinition extends AbstractStep {
     @Given("POST-запрос на аутентификацию с верными учетными данными:")
     public void successAuthenticate(String requestBody) throws Exception {
         response = RestAssured.given()
-                .baseUri(HttpClientUtil.baseUri)
+                .baseUri(baseUri)
                 .header("Content-Type", "application/json")
                 .body(requestBody)
                 .post(urls.get("login"));
@@ -37,8 +36,7 @@ public class AuthStepDefinition extends AbstractStep {
     @Given("POST-запрос на аутентификацию с неверными учетными данными:")
     public void failedAuthenticate(String requestBody) throws Exception {
         response = RestAssured.given()
-                .log().all()
-                .baseUri(HttpClientUtil.baseUri)
+                .baseUri(baseUri)
                 .header("Content-Type", "application/json")
                 .body(requestBody)
                 .post(urls.get("login"));

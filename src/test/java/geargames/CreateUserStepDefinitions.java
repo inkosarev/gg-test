@@ -6,7 +6,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.And;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
-import utils.HttpClientUtil;
 
 import java.util.Map;
 
